@@ -1,0 +1,1817 @@
+{
+  "intents": [
+    {
+      "intent": "historia",
+      "examples": [
+        {
+          "text": "Gostaria de saber sobre a história do personagem"
+        },
+        {
+          "text": "Historia do personagem"
+        },
+        {
+          "text": "historia hulk"
+        },
+        {
+          "text": "Qual a história?"
+        },
+        {
+          "text": "Qual a história do personagem"
+        },
+        {
+          "text": "quero saber da historia"
+        },
+        {
+          "text": "Quero saber sobre a história."
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "inimigos",
+      "examples": [
+        {
+          "text": "gostaria de saber qual o inimigo"
+        },
+        {
+          "text": "inimigo"
+        },
+        {
+          "text": "Quais os inimigos?"
+        },
+        {
+          "text": "qual o principal inimigo?"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "lugar_que_habita",
+      "examples": [
+        {
+          "text": "gostaria de saber em que lugar mora"
+        },
+        {
+          "text": "gostaria de saber onde mora"
+        },
+        {
+          "text": "lugar em que vive"
+        },
+        {
+          "text": "lugar que mora"
+        },
+        {
+          "text": "moradia"
+        },
+        {
+          "text": "Onde mora?"
+        },
+        {
+          "text": "Qual lugar ele vive?"
+        },
+        {
+          "text": "que planeta vive?"
+        },
+        {
+          "text": "região que mora"
+        }
+      ],
+      "description": ""
+    },
+    {
+      "intent": "poderes",
+      "examples": [
+        {
+          "text": "é forte?"
+        },
+        {
+          "text": "Gostaria de saber qual o poder"
+        },
+        {
+          "text": "Gostaria de saber sobre os poderes"
+        },
+        {
+          "text": "Poder"
+        },
+        {
+          "text": "quais os poderes"
+        },
+        {
+          "text": "quais os poderes?"
+        },
+        {
+          "text": "Qual a força"
+        },
+        {
+          "text": "qual o poder"
+        },
+        {
+          "text": "Qual o poder?"
+        },
+        {
+          "text": "Que força ele tem?"
+        },
+        {
+          "text": "quero saber sobre os poderes"
+        },
+        {
+          "text": "quero saber sobre poderes"
+        },
+        {
+          "text": "Super poderes?"
+        }
+      ],
+      "description": ""
+    }
+  ],
+  "entities": [
+    {
+      "entity": "personagens",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "Capitao América",
+          "synonyms": [
+            "Cap",
+            "Capitão",
+            "Captain America",
+            "Homem sem pátria",
+            "Steve Rogers"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Hulk",
+          "synonyms": [
+            "Bruce Banner",
+            "Cicatriz Verde",
+            "Gigante Esmeralda",
+            "gigante verde",
+            "Golias Esmeralda",
+            "O cara verde",
+            "O incrível Hulk",
+            "Verde"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Pantera Negra",
+          "synonyms": [
+            "Black Panther",
+            "Pantera",
+            "T’Chaka"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "Thanos",
+          "synonyms": [
+            "Amante da Morte",
+            "Avatar da Morte",
+            "O exilado",
+            "O Titã Louco",
+            "Queixos",
+            "Thanos Rex"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    },
+    {
+      "entity": "sim_nao",
+      "values": [
+        {
+          "type": "synonyms",
+          "value": "nao",
+          "synonyms": [
+            "n",
+            "nao obrigada",
+            "nao quero",
+            "nao valeu ",
+            "naum",
+            "no",
+            "nop"
+          ]
+        },
+        {
+          "type": "synonyms",
+          "value": "sim",
+          "synonyms": [
+            "claro",
+            "com certeza",
+            "gostaria",
+            "quero sim",
+            "s",
+            "simm",
+            "yep",
+            "yes"
+          ]
+        }
+      ],
+      "fuzzy_match": true
+    }
+  ],
+  "metadata": {
+    "api_version": {
+      "major_version": "v2",
+      "minor_version": "2018-11-08"
+    }
+  },
+  "dialog_nodes": [
+    {
+      "type": "standard",
+      "title": "Bem-vindo",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Olá, me chamo Uatu, sou um dos vigias do universo da Marvel. Como posso te ajudar?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "welcome",
+      "dialog_node": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "title": "Em outros casos",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Eu não entendi. Você pode tentar reformular a frase."
+              },
+              {
+                "text": "Você pode reformular sua afirmação? Eu não estou entendendo."
+              },
+              {
+                "text": "Eu não entendi o sentido."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "conditions": "anything_else",
+      "dialog_node": "Em outros casos",
+      "previous_sibling": "node_9_1598816811557",
+      "disambiguation_opt_out": true
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1598737953700",
+      "event_name": "focus",
+      "dialog_node": "handler_10_1598737953710",
+      "previous_sibling": "handler_5_1598737953710"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Demonstrando enorme força sobre-humana, velocidade, resistência, imortalidade e invulnerabilidade, Thanos pode absorver e projetar grandes quantidades de energia cósmica, e é capaz de telecinese e telepatia."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_10_1598737953700",
+      "conditions": "@personagens:Thanos",
+      "event_name": "filled",
+      "dialog_node": "handler_10_1598737985394",
+      "previous_sibling": "handler_10_1598737953710"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "O Capitão possui atributos físicos, como resistência, agilidade e velocidade sobre-humanas pois seu esqueleto é muito mais denso do que de um humano normal. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_5_1598738275211",
+      "conditions": "@personagens:(Capitao América)",
+      "event_name": "filled",
+      "dialog_node": "handler_10_1598738290419",
+      "previous_sibling": "handler_3_1598738275218"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1598738927462",
+      "context": {
+        "personagens_Hulk": "@personagens:Hulk"
+      },
+      "conditions": "@personagens:Hulk",
+      "event_name": "input",
+      "dialog_node": "handler_10_1598738927479"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1598739804136",
+      "context": {
+        "personagens_Thanos": "@personagens:Thanos"
+      },
+      "conditions": "@personagens:Thanos",
+      "event_name": "input",
+      "dialog_node": "handler_10_1598739804147"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1598739998913",
+      "context": {
+        "personagens__Capitao": "@personagens:(Capitao América)"
+      },
+      "conditions": "@personagens:(Capitao América)",
+      "event_name": "input",
+      "dialog_node": "handler_10_1598739998923"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1598739068328",
+      "event_name": "focus",
+      "dialog_node": "handler_1_1598739068337",
+      "previous_sibling": "handler_2_1598739068337"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": []
+      },
+      "parent": "slot_7_1598737494525",
+      "event_name": "focus",
+      "dialog_node": "handler_2_1598737494535",
+      "previous_sibling": "handler_4_1598737494535"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_2_1598739019323",
+      "context": {
+        "personagens__Capitao": "@personagens:(Capitao América)"
+      },
+      "conditions": "@personagens:(Capitao América)",
+      "event_name": "input",
+      "dialog_node": "handler_2_1598739019333"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Ele mora no Planeta Terra, nos EUA!!!",
+            "Ele mora no planeta Terra nos Estados Unidos da América."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_2_1598739019323",
+      "conditions": "@personagens:(Capitao América)",
+      "event_name": "filled",
+      "dialog_node": "handler_2_1598739040074",
+      "previous_sibling": "handler_5_1598739019333"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1598739068328",
+      "context": {
+        "personagens_Thanos": "@personagens:Thanos"
+      },
+      "conditions": "@personagens:Thanos",
+      "event_name": "input",
+      "dialog_node": "handler_2_1598739068337"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1598739691537",
+      "context": {
+        "personagens__Pantera": "@personagens:(Pantera Negra)"
+      },
+      "conditions": "@personagens:(Pantera Negra)",
+      "event_name": "input",
+      "dialog_node": "handler_2_1598739691556"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1598816100851",
+      "context": {
+        "sim_nao___": "@sim_nao:()"
+      },
+      "conditions": "@sim_nao:()",
+      "event_name": "input",
+      "dialog_node": "handler_2_1598816100872"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1598889549735",
+      "event_name": "focus",
+      "dialog_node": "handler_2_1598889549744",
+      "previous_sibling": "handler_5_1598889549744"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1598738275211",
+      "event_name": "focus",
+      "dialog_node": "handler_3_1598738275218",
+      "previous_sibling": "handler_7_1598738275218"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ele mora em Titã o maior satélite natural de Saturno, e o segundo maior de todo o Sistema Solar!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_5_1598739068328",
+      "conditions": "@personagens:Thanos",
+      "event_name": "filled",
+      "dialog_node": "handler_3_1598739087443",
+      "previous_sibling": "handler_1_1598739068337"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1598739171258",
+      "event_name": "focus",
+      "dialog_node": "handler_3_1598739171268",
+      "previous_sibling": "handler_5_1598739171268"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Os principais inimigos do Capitão são: M.O.D.O.K., Arnim Zola, Soldado Invernal, Ossos Cruzados, Barão Zemo e Caveira Vermelha."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_6_1598739998913",
+      "conditions": "@personagens:(Capitao América)",
+      "event_name": "filled",
+      "dialog_node": "handler_3_1598740015816",
+      "previous_sibling": "handler_9_1598739998923"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1598885999426",
+      "event_name": "focus",
+      "dialog_node": "handler_3_1598885999457",
+      "previous_sibling": "handler_8_1598885999457"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_7_1598737494525",
+      "context": {
+        "personagens__Pantera": "@personagens:(Pantera Negra)"
+      },
+      "conditions": "@personagens:(Pantera Negra)",
+      "event_name": "input",
+      "dialog_node": "handler_4_1598737494535"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "O Pantera Negra possui força sobre-humana, resistência, agilidade, reflexo, velocidade, vigor, fator de cura. "
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_7_1598737494525",
+      "conditions": "@personagens:(Pantera Negra)",
+      "event_name": "filled",
+      "dialog_node": "handler_4_1598737769628",
+      "previous_sibling": "handler_2_1598737494535"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1598738927462",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1598738927479",
+      "previous_sibling": "handler_10_1598738927479"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_4_1598739691537",
+      "event_name": "focus",
+      "dialog_node": "handler_4_1598739691556",
+      "previous_sibling": "handler_2_1598739691556"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Resistência sobre-humana contra ataques místicos: O Hulk possui invulnerabilidade a ataques místicos/mágicos, Regeneração celular espontânea (fator de cura):Hulk, quando tem sua integridade física atingida, é capaz de regenerar ferimentos quase que imediatamente sem sequelas."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_10_1598889549735",
+      "conditions": "@personagens:Hulk",
+      "event_name": "filled",
+      "dialog_node": "handler_4_1598889606008",
+      "previous_sibling": "handler_2_1598889549744"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1598737953700",
+      "context": {
+        "personagens_Thanos": "@personagens:Thanos"
+      },
+      "conditions": "@personagens:Thanos",
+      "event_name": "input",
+      "dialog_node": "handler_5_1598737953710"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Ele mora no mesmo planeta que o seu, a Terra!!",
+            "No Planeta Terra!!"
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_6_1598738927462",
+      "conditions": "@personagens:Hulk",
+      "event_name": "filled",
+      "dialog_node": "handler_5_1598738950258",
+      "previous_sibling": "handler_4_1598738927479"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": []
+      },
+      "parent": "slot_2_1598739019323",
+      "event_name": "focus",
+      "dialog_node": "handler_5_1598739019333",
+      "previous_sibling": "handler_2_1598739019333"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1598739171258",
+      "context": {
+        "personagens__Pantera": "@personagens:(Pantera Negra)"
+      },
+      "conditions": "@personagens:(Pantera Negra)",
+      "event_name": "input",
+      "dialog_node": "handler_5_1598739171268"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Ele mora no Planeta Terra, em Wakanda país localizado na África subsariana."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_5_1598739171258",
+      "conditions": "@personagens:(Pantera Negra)",
+      "event_name": "filled",
+      "dialog_node": "handler_5_1598739185249",
+      "previous_sibling": "handler_3_1598739171268"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_10_1598889549735",
+      "context": {
+        "personagens_Hulk": "@personagens:Hulk"
+      },
+      "conditions": "@personagens:Hulk",
+      "event_name": "input",
+      "dialog_node": "handler_5_1598889549744"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1598739804136",
+      "event_name": "focus",
+      "dialog_node": "handler_6_1598739804147",
+      "previous_sibling": "handler_10_1598739804147"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1598738275211",
+      "context": {
+        "personagens__Capitao": "@personagens:(Capitao América)"
+      },
+      "conditions": "@personagens:(Capitao América)",
+      "event_name": "input",
+      "dialog_node": "handler_7_1598738275218"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Os principais inimigos do Thanos são: Guardiões da Galáxia e os Vingadores."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_9_1598739804136",
+      "conditions": "@personagens:Thanos",
+      "event_name": "filled",
+      "dialog_node": "handler_7_1598739849970",
+      "previous_sibling": "handler_6_1598739804147"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_9_1598816100851",
+      "event_name": "focus",
+      "dialog_node": "handler_7_1598816100872",
+      "previous_sibling": "handler_2_1598816100872"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1598739887169",
+      "event_name": "focus",
+      "dialog_node": "handler_8_1598739887178",
+      "previous_sibling": "handler_9_1598739887178"
+    },
+    {
+      "type": "event_handler",
+      "parent": "slot_4_1598885999426",
+      "event_name": "input",
+      "dialog_node": "handler_8_1598885999457"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "text": {
+          "values": [
+            "Os principais inimigos do Pantera são: Ulysses Klaw, Erik Killmonger, Homem-Gorila, White Wolf e Nakia."
+          ],
+          "selection_policy": "sequential"
+        }
+      },
+      "parent": "slot_4_1598739691537",
+      "conditions": "@personagens:(Pantera Negra)",
+      "event_name": "filled",
+      "dialog_node": "handler_9_1598739732969",
+      "previous_sibling": "handler_4_1598739691556"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_5_1598739887169",
+      "context": {
+        "personagens_Hulk": "@personagens:Hulk"
+      },
+      "conditions": "@personagens:Hulk",
+      "event_name": "input",
+      "dialog_node": "handler_9_1598739887178"
+    },
+    {
+      "type": "event_handler",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Os principais inimigos do Hulk são: Wolverine, Líder, Hulk Vermelho, Thaddeus \"Thunderbolt\" Ross."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "slot_5_1598739887169",
+      "conditions": "@personagens:Hulk",
+      "event_name": "filled",
+      "dialog_node": "handler_9_1598739900970",
+      "previous_sibling": "handler_8_1598739887178"
+    },
+    {
+      "type": "event_handler",
+      "output": {},
+      "parent": "slot_6_1598739998913",
+      "event_name": "focus",
+      "dialog_node": "handler_9_1598739998923",
+      "previous_sibling": "handler_10_1598739998923"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Thanos é um dos filhos de A’Lars, também conhecido como Mentor. Ele nasceu no seio da sociedade Eterna, uma raça antiga de humanos geneticamente modificados por Celestiais, uma raça de extraterrestres misteriosos.  Quer saber mais sobre a história?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1598812237356",
+      "conditions": "@personagens:Thanos",
+      "dialog_node": "node_1_1598815681232",
+      "previous_sibling": "node_9_1598815652002"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Tudo bem!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1598815652002",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598816811557"
+      },
+      "conditions": "@sim_nao:nao",
+      "dialog_node": "node_1_1598820334536",
+      "previous_sibling": "node_7_1598820187283"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Para se sentir mais confiante, Thanos cresceu tentando ser mais poderoso do que todo mundo ao seu redor e, à medida que seus poderes começaram a crescer, também sua ambição e desejo de destruição. Um dos seus principais planos foi a busca pelas seis Jóias do Infinito, com o objetivo de genocídio estelar."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1598815681232",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598816811557"
+      },
+      "conditions": "@sim_nao:sim",
+      "dialog_node": "node_1_1598820555552"
+    },
+    {
+      "type": "frame",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_2_1598890090784",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598816811557"
+      },
+      "conditions": "@personagens",
+      "dialog_node": "node_2_1598738887822",
+      "previous_sibling": "response_7_1598891687748"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Tudo bem! "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1598809455776",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598816811557"
+      },
+      "conditions": "@sim_nao:nao",
+      "dialog_node": "node_2_1598812282716",
+      "previous_sibling": "node_7_1598812237356"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Bruce Banner um físico nuclear trabalhava em um projeto científico. Durante um teste do governo dos EUA com raios gama, infelizmente ocorreu um grande acidente e o gerador acabou explodindo. Você gostaria de saber como ele ficou verde?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1598812237356",
+      "conditions": "@personagens:Hulk",
+      "dialog_node": "node_2_1598815464865"
+    },
+    {
+      "type": "standard",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#lugar_que_habita",
+      "dialog_node": "node_2_1598890090784",
+      "previous_sibling": "node_6_1598890168716"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ah que pena...."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1598815502356",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598816811557"
+      },
+      "conditions": "@sim_nao:nao",
+      "dialog_node": "node_3_1598819455035",
+      "previous_sibling": "node_4_1598818417794"
+    },
+    {
+      "type": "standard",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598816811557"
+      },
+      "conditions": "@personagens",
+      "digress_in": "does_not_return",
+      "dialog_node": "node_3_1598887080806",
+      "previous_sibling": "node_5_1598889644929"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Steve Rogers, um jovem franzino que se alista no exército americano em plena II Guerra Mundial. Após passar por um experimento com um soro especial, adquiriu uma super força, reflexos aguçados e velocidade, um super soldado! \nEle lutou na II Guerra enfrentou muitas batalhas e principalmente contra seu arqui-inimigo Caveira Vermelha, no final ele acaba vencendo a batalha, mas infelizmente o Caveira Vermelha escapa. Você quer continuar a história?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1598812237356",
+      "conditions": "@personagens:(Capitao América)",
+      "dialog_node": "node_4_1598815502356",
+      "previous_sibling": "node_2_1598815464865"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ah que pena.... "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1598815464865",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598816811557"
+      },
+      "conditions": "@sim_nao:nao",
+      "dialog_node": "node_4_1598816559481",
+      "previous_sibling": "node_5_1598816061291"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ele lutou na II Guerra enfrentou muitas batalhas e principalmente contra seu arqui-inimigo Caveira Vermelha, no final ele acaba vencendo a batalha, mas infelizmente o Caveira Vermelha escapa. Você quer saber mais um pouco?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1598815502356",
+      "conditions": "@sim_nao:sim",
+      "dialog_node": "node_4_1598818417794"
+    },
+    {
+      "type": "standard",
+      "parent": "node_9_1598816811557",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "@sim_nao:nao || @sim_nao:sim",
+      "dialog_node": "node_4_1598885945669"
+    },
+    {
+      "type": "frame",
+      "parent": "node_5_1598889644929",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598816811557"
+      },
+      "conditions": "@personagens",
+      "dialog_node": "node_5_1598736527273",
+      "previous_sibling": "response_1_1598891601444"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Aconteceu por causa de um fator genético desconhecido no corpo de Bruce. Ele não foi morto pela radiação e ao invés disso ele sofreu uma mutação e se transforme no monstro verde que foi chamado de Hulk! "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1598815464865",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598816811557"
+      },
+      "conditions": "@sim_nao:sim",
+      "dialog_node": "node_5_1598816061291"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "O Capitão América pode ser mais velho do que você imagina, ele pode ter mais de 100 anos!!! Já que o soro de super soldado alterou o metabolismo, aumentou a resistência e retardou seu envelhecimento!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1598818417794",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598816811557"
+      },
+      "conditions": "@sim_nao:sim",
+      "dialog_node": "node_5_1598819489405"
+    },
+    {
+      "type": "standard",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#poderes",
+      "dialog_node": "node_5_1598889644929",
+      "previous_sibling": "node_2_1598890090784"
+    },
+    {
+      "type": "standard",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#inimigos",
+      "dialog_node": "node_6_1598890168716",
+      "previous_sibling": "node_9_1598809455776"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Sobre qual personagem você quer saber?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1598809455776",
+      "conditions": "@sim_nao:sim",
+      "dialog_node": "node_7_1598812237356",
+      "previous_sibling": "node_9_1598890998854"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Vibraniun é um dos materiais usados no escudo do Capitão América e na armadura do Pantera Negra, que os tornam quase indestrutíveis. Criado pelos guerreiros de Wakanda o Pantera Negra é um rei e guerreiro nato, lutando contra as forças do mal, muitas das vezes defendendo o seu povo."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1598815652002",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598816811557"
+      },
+      "conditions": "@sim_nao:sim",
+      "dialog_node": "node_7_1598820187283"
+    },
+    {
+      "type": "frame",
+      "parent": "node_6_1598890168716",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598816811557"
+      },
+      "conditions": "@personagens",
+      "dialog_node": "node_9_1598739668003",
+      "previous_sibling": "response_10_1598890597648"
+    },
+    {
+      "type": "standard",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#historia",
+      "dialog_node": "node_9_1598809455776",
+      "previous_sibling": "Bem-vindo"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "T'Challa o Pantera Negra é o chefe da Tribo Pantera de Wakanda, uma cidade repleta de tecnologia que se mantém distante da globalização e um dos principais motivos é de possuir a maior mina de Vibranium do mundo. Gostaria de saber mais um pouco?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_7_1598812237356",
+      "conditions": "@personagens:(Pantera Negra)",
+      "dialog_node": "node_9_1598815652002",
+      "previous_sibling": "node_4_1598815502356"
+    },
+    {
+      "type": "standard",
+      "title": "Agradecimento",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Gostaria de saber mais sobre algum personagem? "
+              },
+              {
+                "text": "Você gostaria de saber mais algum personagem"
+              },
+              {
+                "text": "Quer saber mais sobre os personagens?"
+              },
+              {
+                "text": "Mais alguma curiosidade sobre algum personagem?"
+              },
+              {
+                "text": "Mais alguma informação sobre os personagens?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "dialog_node": "node_9_1598816811557",
+      "previous_sibling": "node_3_1598887080806"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ok! "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1598818417794",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598816811557"
+      },
+      "conditions": "@sim_nao:nao",
+      "dialog_node": "node_9_1598819618502",
+      "previous_sibling": "node_5_1598819489405"
+    },
+    {
+      "type": "standard",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Uhmm tudod bem!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_1_1598815681232",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598816811557"
+      },
+      "conditions": "@sim_nao:nao",
+      "dialog_node": "node_9_1598820839644",
+      "previous_sibling": "node_1_1598820555552"
+    },
+    {
+      "type": "standard",
+      "parent": "node_9_1598809455776",
+      "metadata": {
+        "_customization": {
+          "mcr": true
+        }
+      },
+      "conditions": "#historia && @personagens",
+      "dialog_node": "node_9_1598890998854",
+      "previous_sibling": "response_8_1598890743435"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ele é o grande chefe da Tribo Pantera de Wakanda."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1598887080806",
+      "conditions": "@personagens:(Pantera Negra)",
+      "dialog_node": "response_10_1598888706305",
+      "previous_sibling": "response_1_1598887275073"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Inimigos de qual personagem você gostaria de saber?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1598890168716",
+      "conditions": "#inimigos",
+      "dialog_node": "response_10_1598890597648",
+      "previous_sibling": "response_10_1598890613753"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_6_1598890168716",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598739668003"
+      },
+      "conditions": "#inimigos && @personagens",
+      "dialog_node": "response_10_1598890613753"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_9_1598890998854",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_2_1598815464865"
+      },
+      "conditions": "#historia && @personagens:Hulk",
+      "dialog_node": "response_10_1598891136134"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_9_1598890998854",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598815652002"
+      },
+      "conditions": "#historia && @personagens:(Pantera Negra)",
+      "dialog_node": "response_10_1598891374772",
+      "previous_sibling": "response_10_1598891136134"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1598885945669",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_2_1598738887822"
+      },
+      "conditions": "#lugar_que_habita && @sim_nao:sim",
+      "dialog_node": "response_1_1598886151525",
+      "previous_sibling": "response_2_1598886101555"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Sobre qual assunto você gostaria de saber? Poderes, inimigos, lugar em que vive ou outras histórias?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1598885945669",
+      "conditions": "@sim_nao:sim",
+      "dialog_node": "response_1_1598886319263",
+      "previous_sibling": "response_6_1598886265362"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Conhecido como o primeiro Vingador."
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1598887080806",
+      "conditions": "@personagens:(Capitao América)",
+      "dialog_node": "response_1_1598887275073",
+      "previous_sibling": "response_8_1598887260632"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_9_1598809455776",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598890998854"
+      },
+      "conditions": "#historia && @personagens",
+      "dialog_node": "response_1_1598890754955"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "De qual personagem?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_5_1598889644929",
+      "conditions": "#poderes",
+      "dialog_node": "response_1_1598891601444",
+      "previous_sibling": "response_9_1598891612435"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1598885945669",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598809455776"
+      },
+      "conditions": "#historia && @sim_nao:sim",
+      "dialog_node": "response_2_1598886101555"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Ah tudo bem! Obrigado por explorar uma pequena parte do Universo Marvel comigo!"
+              },
+              {
+                "text": "Okay! Obrigado espero ter ajudade e até a próxima."
+              },
+              {
+                "text": "Espero ter te ajudado!! Obrigado e até a próxima!"
+              },
+              {
+                "text": "Tudo bem! Até a próxima"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1598885945669",
+      "conditions": "@sim_nao:nao",
+      "dialog_node": "response_2_1598886341438",
+      "previous_sibling": "response_1_1598886319263"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_9_1598890998854",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_4_1598815502356"
+      },
+      "conditions": "#historia && @personagens:(Capitao América)",
+      "dialog_node": "response_3_1598891429821",
+      "previous_sibling": "response_6_1598891406949"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_2_1598890090784",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_2_1598738887822"
+      },
+      "conditions": "#lugar_que_habita && @personagens",
+      "dialog_node": "response_4_1598891696377"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1598885945669",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_9_1598739668003"
+      },
+      "conditions": "#inimigos && @sim_nao:sim",
+      "dialog_node": "response_6_1598886265362",
+      "previous_sibling": "response_8_1598886231471"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Conhecido também como Titã Louco, é um dos grandes vilões da Marvel. "
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1598887080806",
+      "conditions": "@personagens:Thanos",
+      "dialog_node": "response_6_1598888840876",
+      "previous_sibling": "response_10_1598888706305"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_9_1598890998854",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_1_1598815681232"
+      },
+      "conditions": "#historia && @personagens:Thanos",
+      "dialog_node": "response_6_1598891406949",
+      "previous_sibling": "response_10_1598891374772"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Gostaria de saber de qual personagem?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_2_1598890090784",
+      "conditions": "#lugar_que_habita",
+      "dialog_node": "response_7_1598891687748",
+      "previous_sibling": "response_4_1598891696377"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_4_1598885945669",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_5_1598736527273"
+      },
+      "conditions": "#poderes && @sim_nao:sim",
+      "dialog_node": "response_8_1598886231471",
+      "previous_sibling": "response_1_1598886151525"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "É um dos heróis mais conhecidos da Marvel!"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_3_1598887080806",
+      "conditions": "@personagens:Hulk",
+      "dialog_node": "response_8_1598887260632"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": [
+          {
+            "values": [
+              {
+                "text": "Você gostaria de saber mais sobre as histórias dos personagens?"
+              }
+            ],
+            "response_type": "text",
+            "selection_policy": "sequential"
+          }
+        ]
+      },
+      "parent": "node_9_1598809455776",
+      "conditions": "#historia",
+      "dialog_node": "response_8_1598890743435",
+      "previous_sibling": "response_1_1598890754955"
+    },
+    {
+      "type": "response_condition",
+      "output": {
+        "generic": []
+      },
+      "parent": "node_5_1598889644929",
+      "next_step": {
+        "behavior": "jump_to",
+        "selector": "body",
+        "dialog_node": "node_5_1598736527273"
+      },
+      "conditions": "#poderes && @personagens",
+      "dialog_node": "response_9_1598891612435"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_5_1598736527273",
+      "variable": "$personagens_Thanos",
+      "dialog_node": "slot_10_1598737953700",
+      "previous_sibling": "slot_7_1598737494525"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_5_1598736527273",
+      "variable": "$personagens_Hulk",
+      "dialog_node": "slot_10_1598889549735",
+      "previous_sibling": "slot_5_1598738275211"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_2_1598738887822",
+      "variable": "$personagens__Capitao",
+      "dialog_node": "slot_2_1598739019323",
+      "previous_sibling": "slot_6_1598738927462"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_9_1598739668003",
+      "variable": "$personagens__Pantera",
+      "dialog_node": "slot_4_1598739691537"
+    },
+    {
+      "type": "slot",
+      "parent": "node_4_1598885945669",
+      "dialog_node": "slot_4_1598885999426",
+      "previous_sibling": "response_2_1598886341438"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_5_1598736527273",
+      "variable": "$personagens__Capitao",
+      "dialog_node": "slot_5_1598738275211",
+      "previous_sibling": "slot_10_1598737953700"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_2_1598738887822",
+      "variable": "$personagens_Thanos",
+      "dialog_node": "slot_5_1598739068328",
+      "previous_sibling": "slot_2_1598739019323"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_2_1598738887822",
+      "variable": "$personagens__Pantera",
+      "dialog_node": "slot_5_1598739171258",
+      "previous_sibling": "slot_5_1598739068328"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_9_1598739668003",
+      "variable": "$personagens_Hulk",
+      "dialog_node": "slot_5_1598739887169",
+      "previous_sibling": "slot_9_1598739804136"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_2_1598738887822",
+      "variable": "$personagens_Hulk",
+      "dialog_node": "slot_6_1598738927462"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_9_1598739668003",
+      "variable": "$personagens__Capitao",
+      "dialog_node": "slot_6_1598739998913",
+      "previous_sibling": "slot_5_1598739887169"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_5_1598736527273",
+      "variable": "$personagens__Pantera",
+      "dialog_node": "slot_7_1598737494525"
+    },
+    {
+      "type": "slot",
+      "output": {},
+      "parent": "node_9_1598739668003",
+      "variable": "$personagens_Thanos",
+      "dialog_node": "slot_9_1598739804136",
+      "previous_sibling": "slot_4_1598739691537"
+    },
+    {
+      "type": "slot",
+      "parent": "node_5_1598816061291",
+      "variable": "$sim_nao___",
+      "dialog_node": "slot_9_1598816100851"
+    }
+  ],
+  "counterexamples": [
+    {
+      "text": "hulk"
+    }
+  ],
+  "system_settings": {
+    "disambiguation": {
+      "prompt": "Você quis dizer:",
+      "enabled": true,
+      "randomize": true,
+      "max_suggestions": 5,
+      "suggestion_text_policy": "title",
+      "none_of_the_above_prompt": "Nenhuma das anteriores"
+    },
+    "system_entities": {
+      "enabled": true
+    },
+    "human_agent_assist": {
+      "prompt": "Você quis dizer:"
+    }
+  },
+  "learning_opt_out": false,
+  "name": "Identificar_Marvel",
+  "language": "pt-br",
+  "description": "Descrever e informar características dos personagens(Pantera Negra, Hulk, Capitão América e Thanos) da Marvel."
+}
